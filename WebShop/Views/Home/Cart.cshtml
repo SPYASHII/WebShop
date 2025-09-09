@@ -1,0 +1,30 @@
+﻿@model Cart;
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="cart">
+    @{
+        foreach (var p in Model.IdProductQtyPairs)
+        {
+            Product product = p.Value.Product;
+            int qty = p.Value.Qty;
+
+            <div class="cart-product">
+                <p>@product.Name</p>
+                <p>@product.Price</p>
+                <p>@qty</p>
+            </div>
+        }
+    }
+    <form asp-action="Buy" asp-controller="Home">
+        <input id="buy-submit" type="submit" value="Buy" />
+    </form>
+    <form asp-action="ClearCart" asp-controller="Home">
+        <input id="clear-cart-submit" type="submit" value="Clear" />
+    </form>
+</div>
+
+<script src="~/js/cart.js" asp-append-version="true"></script>

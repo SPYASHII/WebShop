@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Profile</p>
+
+@{
+    string login = @ViewBag.Login ?? "";
+}
+<div>
+    <p>Login: @login</p>
+    <p>Select header color:</p>
+
+    <form asp-action="Profile" asp-controller="Home" method="post">
+        <button value="white" name="headerColor">White</button>
+        <button value="grey" name="headerColor">Grey</button>
+    </form>
+</div>
+<div class="logout-div">
+    <form asp-action="Logout" asp-controller="Login">
+        <input class="logout-button" type="submit" value="Log out" />
+    </form>
+</div>

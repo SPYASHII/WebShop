@@ -1,0 +1,51 @@
+﻿
+@{
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebShop.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <a asp-action="Catalog" asp-controller="Home">Shop</a>
+        <a asp-action="Catalog" asp-controller="Home">Catalog</a>
+        <a asp-action="Cart" asp-controller="Home">Cart</a>
+        @* отображение меню и отображение войти/регистрация если не аутентифицирован*@
+        @{
+            bool loged = ViewBag.Loged ?? false;
+        }
+
+        @if (loged)
+        {
+            <partial name="_ProfilePartial" />
+        }
+        else
+        {
+            <partial name="_LoginPartial" />
+        }
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

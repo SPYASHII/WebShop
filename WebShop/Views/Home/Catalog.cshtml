@@ -1,0 +1,27 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Catalog";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="catalog">
+    @{
+        foreach (var p in Model)
+        {
+            <div class="catalog-product">
+                <p>@p.Name</p>
+                <p>@p.Price.ToString("F2")$</p>
+                <p>Quantity: @p.Qty</p>
+                @if(p.Qty > 0)
+                {
+                    <form method="post" asp-action="Cart">
+                        <input type="hidden" name="productId" value="@p.Id" />
+                        <input type="number" name="qty" max="@p.Qty" min="1" value="1" />
+                        <input type="submit" value="Add to Cart" />
+                    </form>
+                }
+            </div>
+        }
+    }
+</div>
+
